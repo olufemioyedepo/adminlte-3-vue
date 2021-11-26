@@ -5,6 +5,8 @@ import Main from '@/modules/main/main.vue';
 import Login from '@/modules/login/login.vue';
 import Register from '@/modules/register/register.vue';
 
+import AppLogin from '@/modules/auth/login.vue';
+
 import Dashboard from '@/pages/dashboard/dashboard.vue';
 import Profile from '@/pages/profile/profile.vue';
 import ForgotPassword from '@/modules/forgot-password/forgot-password.vue';
@@ -77,6 +79,14 @@ const routes: Array<RouteRecordRaw> = [
         path: '/login',
         name: 'Login',
         component: Login,
+        meta: {
+            requiresUnauth: true
+        }
+    },
+    {
+        path: '/auth/login',
+        name: 'AppLogin',
+        component: AppLogin,
         meta: {
             requiresUnauth: true
         }
