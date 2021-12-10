@@ -119,7 +119,8 @@ const routes: Array<RouteRecordRaw> = [
         path: '/privacy-policy',
         name: 'RecoverPassword',
         component: PrivacyPolicy
-    }
+    },
+    //{ path: '/:pathMatch(.*)*', component: PathNotFound },
 ];
 
 const router = createRouter({
@@ -128,13 +129,25 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-    if (to.meta.requiresAuth && !store.getters['auth/token']) {
-        next('/login');
-    } else if (to.meta.requiresUnauth && !!store.getters['auth/token']) {
+    if (to.meta.requiresAuth && !store.getters['auth/userinfo']) {
+    //if (to.meta.requiresAuth && !store.getters['auth/jwt']) {
+        alert('not logged in!');
+        next('/auth/login');
+    //} else if (to.meta.requiresUnauth && !!store.getters['auth/jwt']) {
+    } else if (to.meta.requiresUnauth && !!store.getters['auth/userinfo']) {
         next('/');
     } else {
+        //alert('Logged in!');
         next();
     }
+
+    // if (to.meta.requiresAuth && !store.getters['auth/token']) {
+    //     next('/login');
+    // } else if (to.meta.requiresUnauth && !!store.getters['auth/token']) {
+    //     next('/');
+    // } else {
+    //     next();
+    // }
 });
 
 export default router;

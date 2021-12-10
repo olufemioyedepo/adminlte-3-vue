@@ -7,7 +7,9 @@ const authModule: IAuthModule = {
     namespaced: true,
     state: {
         token: localStorage.getItem('gatekeeper_token'),
-        user: null
+        user: null,
+        jwt: localStorage.getItem('jwt'),
+        userinfo: null
     },
     mutations,
     actions,
