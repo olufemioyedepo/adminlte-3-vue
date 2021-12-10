@@ -1,0 +1,41 @@
+{
+  "code": 200,
+  "success": true,
+  "message": "Transactions loaded successfully!",
+  "data": {
+    "labels": [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ],
+    "datasets": [
+      {
+        "label": "2021 Year to Date Performance",
+        "backgroundColor": "#42A5F5",
+        "data": [
+          1782850.0,
+          1163600.0,
+          549622.0,
+          417500.0,
+          314800.0,
+          2078040.0,
+          1772745.0,
+          1369200.0,
+          1496009.0,
+          2482566.0,
+          2212040.0,
+          379150.0
+        ]
+      }
+    ]
+  }
+}
