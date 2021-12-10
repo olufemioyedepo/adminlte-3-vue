@@ -23,8 +23,9 @@
 </template>
 <script>
 import $ from 'jquery';
-import {onMounted, ref} from 'vue';
+import {onMounted} from 'vue';
 
+import '../../../node_modules/admin-lte/plugins/bootstrap/js/bootstrap.bundle.min.js';
 import '../../../node_modules/admin-lte/plugins/datatables/jquery.dataTables.min.js';
 import '../../../node_modules/admin-lte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js';
 import '../../../node_modules/admin-lte/plugins/datatables-responsive/js/dataTables.responsive.min.js';
@@ -37,6 +38,7 @@ import '../../../node_modules/admin-lte/plugins/pdfmake/vfs_fonts.js';
 import '../../../node_modules/admin-lte/plugins/datatables-buttons/js/buttons.html5.min.js';
 import '../../../node_modules/admin-lte/plugins/datatables-buttons/js/buttons.print.min.js';
 import '../../../node_modules/admin-lte/plugins/datatables-buttons/js/buttons.colVis.min.js';
+// import '../../../dist/js/adminlte.min.js';
 
 export default {
     name: 'CustomDatatable',
@@ -64,13 +66,16 @@ export default {
                             'csv',
                             'excel',
                             'pdf',
-                            'print',
-                            'colvis'
+                            'print'
+                            // 'colvis'
                         ]
                     })
                     .buttons()
                     .container()
                     .appendTo('#tableTemplate_wrapper .col-md-6:eq(0)');
+
+                $('.dt-buttons').addClass('btn-group flex-wrap');
+                $('.dt-button').addClass('btn btn-secondary');
             });
         };
 
