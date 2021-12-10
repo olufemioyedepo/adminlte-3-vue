@@ -41,7 +41,9 @@
         "terms": "terms",
         "register": "Register",
         "alreadyHaveMembership": "I already have a membership",
-        "userProfile": "User Profile"
+        "userProfile": "User Profile",
+        "lastTenTransactions": "Últimas 10 transacciones",
+        "yearToDatePerformance": "Rendimiento anual hasta la fecha"
     },
     "messages": {
         "retrieveNewPassword": "You forgot your password? Here you can easily retrieve a new password.",

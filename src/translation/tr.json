@@ -41,7 +41,9 @@
         "terms": "terms",
         "register": "Üye ol",
         "alreadyHaveMembership": "Zaten üyeliğim var",
-        "userProfile": "Kullanıcı Profili"
+        "userProfile": "Kullanıcı Profili",
+        "lastTenTransactions": "Son 10 İşlem",
+        "yearToDatePerformance": "Yıldan Bugüne Performans"
     },
     "messages": {
         "retrieveNewPassword": "Şifreni mi unuttun? Buradan kolayca yeni bir şifre alabilirsin.",
