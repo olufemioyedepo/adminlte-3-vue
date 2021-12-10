@@ -10,3 +10,10 @@ export const calculateWindowSize = (windowWidth: number): string => {
     }
     return 'xs';
 };
+
+export class helper {
+    static getBaseUrl = () : string => {
+        const baseUrl = process.env.NODE_ENV === 'development' ? "https://localhost:5090/" : "https://axamansard.com/partnerapp/";
+        return baseUrl;
+    }
+}
