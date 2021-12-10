@@ -14,6 +14,7 @@ export default class User extends Vue {
     }
 
     private logout() {
-        this.$store.dispatch('auth/logout');
+        //this.$store.dispatch('auth/logout');
+        this.$store.dispatch('auth/doLogout');
     }
 }

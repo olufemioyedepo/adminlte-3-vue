@@ -1,27 +1,9 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <router-link to="/" class="brand-link">
-        <img
-            src="@/assets/img/logo.png"
-            alt="AdminLTE Logo"
-            class="brand-image img-circle elevation-3"
-            style="opacity: 0.8"
-        />
-        <span class="brand-text font-weight-light">AdminLTE 3</span>
-    </router-link>
-
     <div class="sidebar">
-        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-            <div class="image">
-                <img
-                    :src="(user && user.picture) ? user.picture : require('@/assets/img/default-profile.png')"
-                    class="img-circle elevation-2"
-                    alt="User Image"
-                />
-            </div>
-            <div class="info">
-                <router-link to="/profile" class="d-block">
-                    {{user && user.email}}
-                </router-link>
+        <div class="pb-3 mt-3 mb-3 user-panel d-flex">
+            <div class="text-center info" style="color: white;">
+                {{userinfo?.partnerName}} <br />
+                {{userinfo?.email}}
             </div>
         </div>
 
