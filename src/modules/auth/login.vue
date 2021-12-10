@@ -14,25 +14,27 @@
                         class="logo"
                     />
                 </div>
-                <div class="login-wrapper my-auto">
+                <div class="my-auto login-wrapper">
                     <h1 class="login-title">Log in</h1>
-                    <form action="#!">
+                    <form>
                         <div class="form-group">
                             <label for="email">Email</label>
                             <input
                                 type="email"
                                 name="email"
                                 id="email"
+                                placeholder="Enter your email"
                                 class="form-control"
-                                v-model="loginPayload.email"
+                                v-model="loginPayload.username"
                             />
                         </div>
-                        <div class="form-group mb-4">
+                        <div class="mb-4 form-group">
                             <label for="password">Password</label>
                             <input
                                 type="password"
                                 name="password"
                                 id="password"
+                                placeholder="Enter your password"
                                 class="form-control"
                                 v-model="loginPayload.password"
                             />
@@ -42,6 +44,7 @@
                             id="login"
                             class="btn btn-block login-btn"
                             type="button"
+                            :disabled="signingIn == true"
                             @click="doLogin"
                         >
                             <span v-if="signingIn == true">
@@ -61,9 +64,9 @@
                     </form>
                 </div>
             </div>
-            <div class="col-sm-6 px-0 d-none d-sm-block">
+            <div class="px-0 col-sm-6 d-none d-sm-block">
                 <img
-                    src="@/assets/img/login.jpg"
+                    src="@/assets/img/login2.jpg"
                     alt="login image"
                     class="login-img"
                 />
@@ -72,20 +75,83 @@
     </div>
 </template>
 <script lang="ts">
-import {defineComponent, onMounted, reactive, ref} from 'vue';
+import {defineComponent, reactive, ref} from 'vue';
+import instance from '@/utils/axios';
+import {useToast} from 'vue-toastification';
+import {useStore} from 'vuex';
+import {LoginResponse} from '@/interfaces/auth/loginresponse';
+
 export default defineComponent({
     name: 'AppLogin',
     setup() {
+        const store = useStore();
+        const toast = useToast();
         const signingIn = ref(false);
         const invalidLogin = ref(false);
         const loginPayload = reactive({
-            email: '',
+            username: '',
             password: ''
         });
+        var loginResponse = ref({} as LoginResponse);
+
+        const toggleSignIn = () => {
+            signingIn.value = !signingIn.value;
+        };
 
         const doLogin = async () => {
-            signingIn.value = true;
+            toggleSignIn();
+
             console.log(loginPayload);
+            await instance
+                .post('auth/login', loginPayload)
+                .then((res) => {
+                    var response = res;
+
+                    console.log(res);
+                    if (response !== null && response.data !== null) {
+                        if (response.data.code !== 200) {
+                            toast.error(`${response.data.message}`);
+                        }
+
+                        if (response.data.code === 200) {
+                            toast.success('Login was successful!');
+
+                            loginResponse.value = res.data;
+                            console.log(loginResponse.value);
+                            persistLoginResponse(loginResponse);
+                        }
+                    }
+
+                    toggleSignIn();
+                })
+                .catch((error) => {
+                    console.log(error);
+                    toggleSignIn();
+
+                    if (error.message === 'Network Error') {
+                        toast.error('Could not connect to server!');
+                    }
+
+                    var errorResponse = error.response;
+                    console.log(errorResponse);
+                    if (errorResponse.status === 401) {
+                        // invalid login credentials
+                        toast.error('Invalid login credentials!');
+                    }
+                });
+        };
+
+        const persistLoginResponse = (response: any) => {
+            var resp = response.value;
+
+            if (resp !== null) {
+                var token = resp.data.token;
+                var userInfo = resp.data.pixelAuthResposeContent;
+
+                localStorage.setItem('jwt', token);
+                store.dispatch('auth/setuserinfo', userInfo);
+                store.dispatch('auth/setlogintoken', token);
+            }
         };
 
         return {
