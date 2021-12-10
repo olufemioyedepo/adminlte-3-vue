@@ -2,7 +2,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">
-            <div class="row mb-2">
+            <div class="mb-2 row">
                 <div class="col-sm-6">
                     <h1>Blank Page</h1>
                 </div>
@@ -27,12 +27,7 @@
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table
-                                    class="
-                                        table
-                                        table-striped
-                                        table-hover
-                                        table-bordered
-                                    "
+                                    class="table table-striped table-hover table-bordered"
                                     id="usersTable"
                                 >
                                     <thead>
@@ -77,6 +72,7 @@
 <script>
 import $ from 'jquery';
 import instance from '@/utils/axios';
+import axios from 'axios';
 //import Button from 'primevue/button';
 
 import {onMounted, ref} from 'vue';
@@ -113,8 +109,8 @@ export default {
         ]);
 
         const loadData = async () => {
-            await instance
-                .get('?results=100')
+            await axios
+                .get('https://randomuser.me/api/?results=100')
                 .then((res) => {
                     console.log('res: ', res);
                     usersData.value = res.data.results;
@@ -136,13 +132,15 @@ export default {
                                     'csv',
                                     'excel',
                                     'pdf',
-                                    'print',
-                                    'colvis'
+                                    'print'
+                                    // 'colvis'
                                 ]
                             })
                             .buttons()
                             .container()
                             .appendTo('#usersTable_wrapper .col-md-6:eq(0)');
+                        $('.dt-buttons').addClass('btn-group flex-wrap');
+                        $('.dt-button').addClass('btn btn-secondary');
                     });
                 })
                 .catch((err) => {
@@ -154,6 +152,8 @@ export default {
             loadData();
             records.value = usersFromJson;
             console.log(records.value);
+            //console.log(process.env);
+            console.log(process.env.VUE_APP_BASEURL);
         });
 
         return {
