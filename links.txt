@@ -1,1 +1,2 @@
 npm install --save-dev cypress
+https://medium.com/grapecity/best-practices-for-vue-developers-in-2021-ed8f70458734

@@ -39,7 +39,6 @@
                                         <th>Amount</th>
                                         <th>Fund Type</th>
                                         <th>Payment Type</th>
-                                        <th>Channel</th>
                                         <th>Category</th>
                                         <th>Trans Date</th>
                                         <th>Actions</th>
@@ -53,7 +52,7 @@
                                         <td>
                                             <router-link
                                                 target="_blank"
-                                                :to="`/transactions/details/${transaction.referenceID}`"
+                                                :to="`/transaction/details/${transaction.referenceID}`"
                                             >
                                                 {{
                                                     transaction.referenceID
@@ -79,7 +78,6 @@
                                         </td>
                                         <td>{{ transaction.fund }}</td>
                                         <td>{{ transaction.payType }}</td>
-                                        <td>{{ transaction.channel }}</td>
                                         <td>{{ transaction.category }}</td>
                                         <td>
                                             <small>
@@ -94,7 +92,7 @@
                                         <td>
                                             <router-link
                                                 target="_blank"
-                                                :to="`/transactions/details/${transaction.referenceID}`"
+                                                :to="`/transaction/details/${transaction.referenceID}`"
                                                 class=" btn btn-sm btn-outline-success"
                                                 ><i class="fa fa-book-open"></i>
                                                 View Details</router-link

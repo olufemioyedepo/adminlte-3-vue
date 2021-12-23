@@ -10,6 +10,9 @@ const filters = {
     formatDate(value: Date) {
         return moment(value).format("ddd MMM DD, YYYY [at] HH:mm a");
     },
+    formatDateShort(value: Date) {
+      return moment(value).format("ddd MMM DD, YYYY");
+    },
     formatCurrency(value: Date) {
         return value.toLocaleString();
     }
@@ -83,4 +86,5 @@ export const numberFormats = {
         useGrouping: false,
       },
     },
-  };
+};
+

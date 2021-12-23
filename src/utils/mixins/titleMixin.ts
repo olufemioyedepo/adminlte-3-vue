@@ -1,0 +1,32 @@
+function getTitle(vm: any) {
+    const { title } = vm.$options;
+    if (title) {
+      return typeof title === "function" ? title.call(vm) : title;
+    }
+  }
+
+  function getDescription(vm: any) {
+    const { description } = vm.$options;
+    if (description) {
+      return typeof description === "function"
+        ? description.call(vm)
+        : description;
+    }
+  }
+
+  export default {
+    created() {
+      const title = getTitle(this);
+      const description = getDescription(this);
+
+      if (title) {
+        document.title = title;
+      }
+
+      if (description) {
+        document
+          .querySelector('meta[name="description"]')!
+          .setAttribute("content", description);
+      }
+    },
+  };

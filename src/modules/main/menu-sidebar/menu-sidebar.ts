@@ -21,27 +21,37 @@ export const MENU = [
         icon: 'fas fa-chart-area',
         path: '/'
     },
+    // {
+    //     name: 'Blank',
+    //     path: '/blank'
+    // },
+    // {
+    //     name: 'Transactionz',
+    //     icon: 'fas fa-book',
+    //     path: '/transactions'
+    // },
     {
-        name: 'Blank',
-        path: '/blank'
+        name: 'Customers',
+        icon: 'fas fa-users',
+        path: '/customers'
     },
     {
         name: 'Transactions',
-        icon: 'fas fa-book',
-        path: '/transactions'
+        icon: 'fas fa-calculator',
+        path: '/customer/transactions',
     },
-    {
-        name: 'labels.mainMenu',
-        children: [
-            {
-                name: 'labels.subMenu',
-                path: '/sub-menu-1'
-            },
+    // {
+    //     name: 'labels.mainMenu',
+    //     children: [
+    //         {
+    //             name: 'labels.subMenu',
+    //             path: '/sub-menu-1'
+    //         },
 
-            {
-                name: 'labels.blank',
-                path: '/sub-menu-2'
-            }
-        ]
-    }
+    //         {
+    //             name: 'labels.blank',
+    //             path: '/sub-menu-2'
+    //         }
+    //     ]
+    // }
 ];

@@ -14,6 +14,7 @@ export default {
         LastTenTransactions,
         PerformanceChart
     },
+    title: 'Dashboard',
     setup() {
         const appStore = useStore();
         const userinfo = computed(function () {

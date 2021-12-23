@@ -1,14 +1,15 @@
 import axios from 'axios';
 import store from '@/store/index';
 import router from '@/router';
+import {useToast} from 'vue-toastification';
 
 const baseUrl = process.env.NODE_ENV === 'development' ? "https://localhost:44387/api/" : "https://axamansard.com/partnerapp/api/";
 //const baseUrl = "https://localhost:44387/api/";
 const axiosInstance = axios.create({
     baseURL: baseUrl,
     timeout: 30000,
-    
 });
+const toast = useToast();
 
 // Intercept before sending HTTP requests
 axiosInstance.interceptors.request.use(
@@ -40,6 +41,10 @@ axiosInstance.interceptors.response.use(
     },
     (error) => {
       debugger;
+      if (error.message === "Network Error") {
+        toast.error('Could not connect to server!');
+      }
+
       if (error.response.status === 401) {
         store.dispatch("auth/doLogout");
         router.push("/auth/login");

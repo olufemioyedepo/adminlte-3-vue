@@ -15,6 +15,10 @@ import PrivacyPolicy from '@/modules/privacy-policy/privacy-policy.vue';
 import SubMenu from '@/pages/main-menu/sub-menu/sub-menu.vue';
 import Blank from '@/pages/blank/blank.vue';
 import Transactions from '@/pages/transactions/transactions.vue';
+import TransactionDetail from '@/pages/transactions/TransactionDetail.vue';
+import Customers from '@/pages/customer/Customers.vue';
+import CustomerDetail from '@/pages/customer/CustomerDetail.vue';
+import CustomerTransactions from '@/pages/transactions/CustTransactions.vue';
 
 const routes: Array<RouteRecordRaw> = [
     {
@@ -69,6 +73,38 @@ const routes: Array<RouteRecordRaw> = [
                 path: 'transactions',
                 name: 'Transactions',
                 component: Transactions,
+                meta: {
+                    requiresAuth: true
+                }
+            },
+            {
+                path: 'transaction/details/:referenceId',
+                name: 'TransactionDetail',
+                component: TransactionDetail,
+                meta: {
+                    requiresAuth: true
+                }
+            },
+            {
+                path: 'customers',
+                name: 'Customers',
+                component: Customers,
+                meta: {
+                    requiresAuth: true
+                }
+            },
+            {
+                path: 'customer/details/:prospectId',
+                name: 'CustomerDetail',
+                component: CustomerDetail,
+                meta: {
+                    requiresAuth: true
+                }
+            },
+            {
+                path: 'customer/transactions',
+                name: 'CustomerTransactions',
+                component: CustomerTransactions,
                 meta: {
                     requiresAuth: true
                 }
@@ -131,7 +167,7 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
     if (to.meta.requiresAuth && !store.getters['auth/userinfo']) {
     //if (to.meta.requiresAuth && !store.getters['auth/jwt']) {
-        alert('not logged in!');
+        //alert('not logged in!');
         next('/auth/login');
     //} else if (to.meta.requiresUnauth && !!store.getters['auth/jwt']) {
     } else if (to.meta.requiresUnauth && !!store.getters['auth/userinfo']) {
@@ -140,14 +176,6 @@ router.beforeEach((to, from, next) => {
         //alert('Logged in!');
         next();
     }
-
-    // if (to.meta.requiresAuth && !store.getters['auth/token']) {
-    //     next('/login');
-    // } else if (to.meta.requiresUnauth && !!store.getters['auth/token']) {
-    //     next('/');
-    // } else {
-    //     next();
-    // }
 });
 
 export default router;

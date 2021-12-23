@@ -20,7 +20,6 @@
         "gatekeeper-client-sdk": "0.4.2",
         "jquery": "^3.6.0",
         "luxon": "2.0.2",
-        "moment": "^2.29.1",
         "primeicons": "^5.0.0",
         "primevue": "^3.8.2",
         "uuid": "^8.3.2",
@@ -32,10 +31,12 @@
         "vue-window-size": "^1.1.2",
         "vuex": "^4.0.2",
         "vuex-persistedstate": "^4.1.0",
+        "xlsx": "^0.17.4",
         "yup": "^0.32.9"
     },
     "devDependencies": {
         "@types/jest": "^27.0.1",
+        "@types/jquery": "^3.5.10",
         "@types/luxon": "^2.0.0",
         "@types/uuid": "^8.3.1",
         "@typescript-eslint/eslint-plugin": "^4.29.1",
